@@ -22,12 +22,13 @@ function select_data_as_json($table, $id) {
 	$data=array();
 	$arr = [];
 	
-	$stmt = $conn->prepare("SELECT col_1, col_2, col_3, col_4, col_5 FROM $table WHERE id=?");
+	$col_list="col_1, col_2, col_3, col_4, col_5";//the table column list that need to be in JSON object 
+	$stmt = $conn->prepare("SELECT $col_list FROM $table WHERE id=?");
 	$stmt->bind_param("i", $id);
 	$stmt->execute();
 	$result = $stmt->get_result();
 	while($row = $result->fetch_assoc()) {
-		$res = array_filter($row);
+		$res = array_filter($row);// if there is any null values remove them
 		$arr[] = $res;
 	}
 	if(isset($arr)){
@@ -37,6 +38,7 @@ function select_data_as_json($table, $id) {
 	$stmt->close();
 	return ($a);
 }
+
 function update_data_as_json($table, $id, $data) {
 	global $conn;
 	$stmt = $conn->prepare("UPDATE $table SET all_data = ? WHERE all_data IS null AND id = ?");
