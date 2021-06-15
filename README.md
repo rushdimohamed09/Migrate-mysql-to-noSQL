@@ -2,13 +2,25 @@ Migrate-mysql-to-noSQL database style using MySQL and PHP
 
 Restructuring the MySQL database to NoSQL style 
 
+/*
+ * Program developed by "Rushdi Mohamed (PHP Dev.)"
+ * 
+ * Create Year : 2021, June
+ *  
+ * Program 
+ * 
+ * Update mysql database into noSQL database style with php
+ */
+
+
 Features
 
 Reducing the columns 
 
 Use of JSON Objects 
 
-Convert php scripts 
+PHP scripts 
+
 
 
 Program 
