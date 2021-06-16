@@ -2,7 +2,7 @@
 include("connections.php");
 
 function select($table, $lim_st, $lim_end){
-	global $conn;
+	$conn=config();
 	$stmt = $conn->prepare("SELECT id FROM $table order by id ASC LIMIT ?, ?");
 	$stmt->bind_param("ii", $lim_st, $lim_end);
 	$stmt->execute();
@@ -18,7 +18,7 @@ function select($table, $lim_st, $lim_end){
 }
 
 function select_data_as_json($table, $id) {
-	global $conn;
+	$conn=config();
 	$data=array();
 	$arr = [];
 	
@@ -40,7 +40,7 @@ function select_data_as_json($table, $id) {
 }
 
 function update_data_as_json($table, $id, $data) {
-	global $conn;
+	$conn=config();
 	$stmt = $conn->prepare("UPDATE $table SET all_data = ? WHERE all_data IS null AND id = ?");
 	$stmt->bind_param("si", $data, $id);
 	$stmt->execute();
